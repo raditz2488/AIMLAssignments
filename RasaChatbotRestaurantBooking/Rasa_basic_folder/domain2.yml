@@ -1,0 +1,110 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- restaurant_search
+- goodbye
+- affirm
+- provide_mail
+- deny
+- stop
+entities:
+- cuisine
+- location
+- mail_id
+- price
+slots:
+  location:
+    type: text
+    influence_conversation: true
+  cuisine:
+    type: text
+    influence_conversation: true
+  price:
+    type: text
+    influence_conversation: true
+  mail_id:
+    type: text
+    influence_conversation: true
+  is_loc_supported:
+    type: bool
+    initial_value: true
+    influence_conversation: true
+  mail_response:
+    type: text
+    influence_conversation: false
+  results_found:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+responses:
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Mexican
+      title: Mexican
+    - payload: Italian
+      title: Italian
+    - payload: American
+      title: American
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    text: what kind of cuisine would you like?
+  utter_ask_price_range:
+  - buttons:
+    - payload: low
+      title: Lesser than Rs. 300
+    - payload: moderate
+      title: Rs. 300 to 700
+    - payload: big
+      title: More than 700
+    text: What's the average budget for two people?
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_location:
+  - text: In what location?
+  utter_default:
+  - text: i cannot understand
+  utter_goodbye:
+  - text: Bye-bye
+  - text: See you soon!
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
+  utter_send_on_email:
+  - text: Should I send you details of all the restaurants on email?
+  utter_sent:
+  - text: Sent
+  - text: Sent. Bon Appetit!
+  utter_not_sent:
+  - text: Okay. Bon Appetit!
+  utter_we_dont_operate:
+  - text: Sorry, we don’t operate in this city. Can you please specify some other location
+  - text: Sorry, didn’t find any such location. Can you please tell again?
+  utter_what_emailid:
+  - text: To what email id should I send it to?
+  utter_no_results_found:
+  - text: No restaurants could be found for your criteria
+actions:
+- action_check_location
+- action_search_restaurants
+- action_send_mail
+- utter_ask_cuisine
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_price_range
+- utter_default
+- utter_goodbye
+- utter_greet
+- utter_no_results_found
+- utter_not_sent
+- utter_send_on_email
+- utter_sent
+- utter_we_dont_operate
+- utter_what_emailid
